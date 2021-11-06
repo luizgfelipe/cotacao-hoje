@@ -9,12 +9,14 @@ var json = undefined;
 var BRL = 1;
 
 async function request() {
-    var url = `https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL,AUD-BRL,CHF-BRL,CAD-BRL,CNY-BRL,ARS-BRL,JPY-BRL`;
-
+    var url = `https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL,AUD-BRL,CHF-BRL,CAD-BRL,CNY-BRL,ARS-BRL`;
+    
     var result = await fetch(url);
     json = await result.json();
 
     createElement();
+
+    sessionStorage.setItem('json', JSON.stringify(json));
 }
 
 function createElement() {
