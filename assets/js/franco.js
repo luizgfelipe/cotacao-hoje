@@ -1,11 +1,11 @@
 var json = JSON.parse(sessionStorage.getItem('json'));
-var dolar = 0;
+var franco = 0;
 var input1Ant = 1;
 
 window.addEventListener('load', createElement);
 
-document.querySelector('#coin1').addEventListener('change', cambioUSDBRL);
-document.querySelector('#coin2').addEventListener('change', cambioBRLUSD);
+document.querySelector('#coin1').addEventListener('change', cambioCHFBRL);
+document.querySelector('#coin2').addEventListener('change', cambioBRLCHF);
 
 function createElement() {
     
@@ -21,46 +21,46 @@ function createElement() {
     box.appendChild(boxTitle);
     box.appendChild(boxContent);
 
-    var price = json.USDBRL.ask;
+    var price = json.CHFBRL.ask;
     price = price.slice(0, (price.indexOf('.')) + 3);
     price = 'R$ ' + price.replace('.', ',');
     
-    var name = json.USDBRL.name;
+    var name = json.CHFBRL.name;
     name = name.slice(0, (name.indexOf('/')));
 
-    boxTitle.innerHTML = '1 ' + json.USDBRL.code + ` (${name})`;
+    boxTitle.innerHTML = '1 ' + json.CHFBRL.code + ` (${name})`;
     boxContent.innerHTML = price;
 
-    dolar = json.USDBRL.ask;
-    dolar = dolar.slice(0, (dolar.indexOf('.')) + 3);
+    franco = json.CHFBRL.ask;
+    franco = franco.slice(0, (franco.indexOf('.')) + 3);
 
     document.querySelector('#coin1').value = 1;
-    document.querySelector('#coin2').value = dolar;
+    document.querySelector('#coin2').value = franco;
 }
 
 
-function cambioUSDBRL(){
+function cambioCHFBRL(){
     let input1 = document.querySelector('#coin1');
     let input2 = document.querySelector('#coin2');
 
     if(input1.value < 0 || input2.value < 0){
         input1.value = 1;
-        input2.value = dolar;
+        input2.value = franco;
     }
     else{
-        input2.value = (input1.value * dolar).toFixed(2);
+        input2.value = (input1.value * franco).toFixed(2);
     }
 }
 
-function cambioBRLUSD(){
+function cambioBRLCHF(){
     let input1 = document.querySelector('#coin1');
     let input2 = document.querySelector('#coin2');
 
     if(input1.value < 0 || input2.value < 0){
         input1.value = 1;
-        input2.value = dolar;
+        input2.value = franco;
     }
     else{
-        input1.value = (input2.value / dolar).toFixed(2);
+        input1.value = (input2.value / franco).toFixed(2);
     }
 }

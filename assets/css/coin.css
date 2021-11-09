@@ -125,12 +125,17 @@ nav{
     margin: 5px;
 }
 
+.thumb img{
+    width: 100px;
+    margin-top: 35px;
+}
+
 .mainCoins{
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 45px;
+    margin-top: 35px;
 }
 .mainCoins__box{
     margin: 10px 0;

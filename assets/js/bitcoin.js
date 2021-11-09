@@ -1,11 +1,11 @@
 var json = JSON.parse(sessionStorage.getItem('json'));
-var dolar = 0;
+var bitcoin = 0;
 var input1Ant = 1;
 
 window.addEventListener('load', createElement);
 
-document.querySelector('#coin1').addEventListener('change', cambioUSDBRL);
-document.querySelector('#coin2').addEventListener('change', cambioBRLUSD);
+document.querySelector('#coin1').addEventListener('change', cambioBTCBRL);
+document.querySelector('#coin2').addEventListener('change', cambioBRLBTC);
 
 function createElement() {
     
@@ -21,46 +21,43 @@ function createElement() {
     box.appendChild(boxTitle);
     box.appendChild(boxContent);
 
-    var price = json.USDBRL.ask;
-    price = price.slice(0, (price.indexOf('.')) + 3);
-    price = 'R$ ' + price.replace('.', ',');
+    var price = json.BTCBRL.ask * 1000;
     
-    var name = json.USDBRL.name;
+    var name = json.BTCBRL.name;
     name = name.slice(0, (name.indexOf('/')));
 
-    boxTitle.innerHTML = '1 ' + json.USDBRL.code + ` (${name})`;
-    boxContent.innerHTML = price;
+    boxTitle.innerHTML = '1 ' + json.BTCBRL.code + ` (${name})`;
+    boxContent.innerHTML = 'R$ ' + price;
 
-    dolar = json.USDBRL.ask;
-    dolar = dolar.slice(0, (dolar.indexOf('.')) + 3);
+    bitcoin = json.BTCBRL.ask * 1000; 
 
     document.querySelector('#coin1').value = 1;
-    document.querySelector('#coin2').value = dolar;
+    document.querySelector('#coin2').value = bitcoin;
 }
 
 
-function cambioUSDBRL(){
+function cambioBTCBRL(){
     let input1 = document.querySelector('#coin1');
     let input2 = document.querySelector('#coin2');
 
     if(input1.value < 0 || input2.value < 0){
         input1.value = 1;
-        input2.value = dolar;
+        input2.value = bitcoin;
     }
     else{
-        input2.value = (input1.value * dolar).toFixed(2);
+        input2.value = (input1.value * bitcoin);
     }
 }
 
-function cambioBRLUSD(){
+function cambioBRLBTC(){
     let input1 = document.querySelector('#coin1');
     let input2 = document.querySelector('#coin2');
 
     if(input1.value < 0 || input2.value < 0){
         input1.value = 1;
-        input2.value = dolar;
+        input2.value = bitcoin;
     }
     else{
-        input1.value = (input2.value / dolar).toFixed(2);
+        input1.value = (input2.value / bitcoin).toFixed(7);
     }
 }

@@ -35,11 +35,11 @@ function createElement() {
         box.appendChild(boxContent);
 
         if (json[prop].code != 'BTC') {
-            price = json[prop].high;
+            price = json[prop].ask;
             price = price.slice(0, (price.indexOf('.')) + 3);
             price = 'R$ ' + price.replace('.', ',');
         } else {
-            price = json[prop].high;
+            price = json[prop].ask;
             price = price.slice(0,5);
             price = 'R$ ' + price + 'k';
         }
@@ -51,7 +51,7 @@ function createElement() {
         boxContent.innerHTML = price;
     }
 
-    let dolar = json.USDBRL.high;
+    let dolar = json.USDBRL.ask;
     dolar = dolar.slice(0, (dolar.indexOf('.')) + 3);
 
     document.querySelector('#coin1').value = BRL;
@@ -74,7 +74,7 @@ function handleInput() {
 
     for (let prop in json) {
         if (valorSelect2 === json[prop].code) {
-            moeda2 = json[prop].high;
+            moeda2 = json[prop].ask;
         }
     }
 
